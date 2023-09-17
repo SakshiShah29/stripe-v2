@@ -11,6 +11,7 @@ function Payment() {
   useEffect(() => {
     fetch("/config").then(async (r) => {
       const { publishableKey } = await r.json();
+      // console.log(publishableKey);
       setStripePromise(loadStripe(publishableKey));
     });
   }, []);
@@ -21,6 +22,7 @@ function Payment() {
       body: JSON.stringify({}),
     }).then(async (result) => {
       var { clientSecret } = await result.json();
+      console.log(clientSecret)
       setClientSecret(clientSecret);
     });
   }, []);
